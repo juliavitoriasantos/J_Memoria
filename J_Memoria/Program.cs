@@ -47,30 +47,29 @@ namespace J_Memoria
 
 
 
-            //Para criar números aleatórios
+            //Para criar números aleatórios.
             Random gerador = new Random();
 
-            //Sortear jogador que começa
+            //Sortear jogador que começa.
             int jogador = gerador.Next(1, 2);
 
 
 
             do
             {
-                //Imprimir o nome do jogador da vez
+                //Imprimir o nome do jogador da vez.
 
                 Console.WriteLine("{0} é a sua vez!", 
                     jogador == 1 ? p1.Name : p2.Name);
 
-                //Começa a contar o tempo
+                //Começa a contar o tempo.
                 DateTime begin= DateTime.Now;
 
-                do
-                {
+               
 
-                    for (int i = 1; i <= 8; i++) //Atribui os pares de números às posições
+                    for (int i = 1; i <= 8; i++) //Atribui os pares de números às posições.
                     {
-                        //Escolhe a posição do primeiro número do par
+                        //Escolhe a posição do primeiro número do par.
                         int lin, col;
                         for (int j = 0; j < 2; j++)
                         {
@@ -87,7 +86,7 @@ namespace J_Memoria
                         //Impressão da tela sem precisar repetir tudo de novo.
                         Program.PrintMatrix(tela);
                         do {
-                            //Pedir as posições do primeiro número      
+                            //Pedir as posições do primeiro número.     
                             Console.WriteLine("Escolha uma linha para jogar [1, 4]: ");
                             lin1 = int.Parse(Console.ReadLine());
                         } while (lin1 > 4 || lin1 < 1);
@@ -108,16 +107,13 @@ namespace J_Memoria
 
                     tela[lin1, col1] = jogo[lin1, col1];
 
-                    Console.WriteLine("Digite 0 para sair ou outro número para continuar a jogar");
-                    int valor = int.Parse(Console.ReadLine());
-                    if (valor == 0)
-                        break;
+                   
 
                     do {
                         Program.PrintMatrix(tela);
                         do
                         {
-                            //Pedir as posições do segundo número
+                            //Pedir as posições do segundo número.
                             Console.WriteLine("Escolha uma linha para jogar [1, 4]: ");
                             lin2 = int.Parse(Console.ReadLine());
                         } while (lin2 > 4 || lin2 < 1);
@@ -145,34 +141,36 @@ namespace J_Memoria
                     if (jogo[lin1, col1] == jogo[lin2, col2])
                     {
                         if (jogador == 1)
-                            p1.Score += 1;
-                        else p2.Score += 1;
+                            p1.Score = 1;
+                        else p2.Score = 1;
 
                        acertos++;
                     }
-                    else //Caso não acertem o par
+                    else //Caso não acertem o par.
                     {
                         TimeSpan timeSpan = DateTime.Now - begin;
 
 
-                        //Soma o tempo de partida
+                        //Soma o tempo de partida.
                         if (jogador == 1)
-                            p1.GameTime += timeSpan;
+                            p1.GameTime = timeSpan;
                            
-                        else p2.GameTime += timeSpan;
+                        else p2.GameTime = timeSpan;
 
-                        //Inversão de jogadores
+                        //Inversão de jogadores.
                         jogador = jogador % 2 + 1;
+                   
 
 
-                        tela[lin1, col1] = 0;
+                    tela[lin1, col1] = 0;
                         tela[lin2, col2] = 0;
                     }
 
-                    
+                Console.WriteLine("Digite 0 para sair ou outro número para continuar:");
+                int valor = int.Parse(Console.ReadLine());
 
-
-                } while (acertos < 8);
+                if (valor == 0)
+                    break;
 
                 Console.WriteLine(p1.ToString());
                 Console.WriteLine(p2.ToString());
@@ -182,7 +180,7 @@ namespace J_Memoria
                 Console.WriteLine("Quantidade de tentativas erradas: {0}", erros);
                 Console.WriteLine("Quantidade de tentativas: {0}", tentativas);
 
-            }while (true);         
+            }while (acertos > 8);         
     }
     }
 }
