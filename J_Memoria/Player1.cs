@@ -37,11 +37,18 @@ namespace J_Memoria
         }
         public TimeSpan GameTime
         {
-            get { return _gameTime; }
+            get { return _gameTime; }  
             set
             {
-                    _gameTime = value;
+                    _gameTime += value;
             }
+        }
+
+        public override string ToString()
+        {
+            return "Nome: " + Name +
+            "\nPontuação: " + Score +
+            $"\nTempo de Partida: {GameTime: hh\\:mm\\:ss}";
         }
     }
 }
