@@ -1,4 +1,5 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace J_Memoria
 {
@@ -164,7 +165,9 @@ namespace J_Memoria
 
                     tela[lin1, col1] = 0;
                         tela[lin2, col2] = 0;
-                    }
+
+                    Console.WriteLine($"Tempo total de jogo: {timeSpan.ToString(@"hh\:mm\:ss")}");
+                }
 
                 Console.WriteLine("Digite 0 para sair ou outro número para continuar:");
                 int valor = int.Parse(Console.ReadLine());
@@ -179,9 +182,13 @@ namespace J_Memoria
 
                 Console.WriteLine("Quantidade de tentativas erradas: {0}", erros);
                 Console.WriteLine("Quantidade de tentativas: {0}", tentativas);
+                Console.WriteLine("Quandidade de acertos: {0}", acertos);
 
-            }while (acertos > 8);         
-    }
+
+            } while (acertos > 8);
+
+               
+        }
     }
 }
 
